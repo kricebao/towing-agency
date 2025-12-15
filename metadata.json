@@ -1,0 +1,5 @@
+{
+  "name": "Towing machine",
+  "description": "A real-time fleet management dashboard for tracking vehicle locations, status, and roster details.",
+  "requestFramePermissions": []
+}
