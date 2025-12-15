@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import random
-from fastapi import HTTPException
 
 app = FastAPI()
 # Enable CORS for frontend connection
@@ -26,16 +25,12 @@ class Vehicle(BaseModel):
     lng: float
     rating: float
 
-class VehicleUpdate(BaseModel):
-    providerName: str
-    status: str
 
 # Initial Mock Data (Same as your constants.ts)
 vehicles_db = [
-    [
-        {
-            "id": "TOW-001",
-            "status": "ACTIVE",
+    {
+        "id": "TOW-001",
+            "status": "Active",
             "providerName": "QuickFix Towing",
             "driverName": "Mike",
             "lat": 40.7128,
@@ -44,7 +39,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-002",
-            "status": "BUSY",
+            "status": "Busy",
             "providerName": "AAA Official Rescue",
             "driverName": "Sarah",
             "lat": 40.73,
@@ -53,7 +48,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-003",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Zhang's Garage",
             "driverName": "Zhang",
             "lat": 40.8,
@@ -62,7 +57,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-004",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Brooklyn Best Tow",
             "driverName": "Tony",
             "lat": 40.6782,
@@ -71,7 +66,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-005",
-            "status": "OFFLINE",
+            "status": "Offline",
             "providerName": "Queens Rapid Response",
             "driverName": "Peter",
             "lat": 40.7282,
@@ -80,7 +75,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-006",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Staten Island Rescue",
             "driverName": "Vinny",
             "lat": 40.5795,
@@ -89,7 +84,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-007",
-            "status": "BUSY",
+            "status": "Busy",
             "providerName": "Bronx Heavy Duty",
             "driverName": "Marcus",
             "lat": 40.8448,
@@ -98,7 +93,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-008",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Manhattan Elite",
             "driverName": "Jessica",
             "lat": 40.7831,
@@ -107,7 +102,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-009",
-            "status": "OFFLINE",
+            "status": "Offline",
             "providerName": "Jersey City Haul",
             "driverName": "Bill",
             "lat": 40.7178,
@@ -116,7 +111,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-010",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Newark Tow Masters",
             "driverName": "Jamal",
             "lat": 40.7357,
@@ -125,7 +120,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-011",
-            "status": "BUSY",
+            "status": "Busy",
             "providerName": "Hoboken Hook",
             "driverName": "Alex",
             "lat": 40.744,
@@ -134,7 +129,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-012",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Long Island Express",
             "driverName": "Ken",
             "lat": 40.74,
@@ -143,7 +138,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-013",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Yonkers Yellow Truck",
             "driverName": "Luis",
             "lat": 40.9312,
@@ -152,7 +147,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-014",
-            "status": "OFFLINE",
+            "status": "Offline",
             "providerName": "Greenwich Village Tow",
             "driverName": "Emily",
             "lat": 40.7336,
@@ -161,7 +156,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-015",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Harlem Night Shift",
             "driverName": "Tyrone",
             "lat": 40.8116,
@@ -170,7 +165,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-016",
-            "status": "BUSY",
+            "status": "Busy",
             "providerName": "Astoria Auto Aid",
             "driverName": "Dimitri",
             "lat": 40.7644,
@@ -179,7 +174,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-017",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Flushing Flatbed",
             "driverName": "Wei",
             "lat": 40.7674,
@@ -188,7 +183,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-018",
-            "status": "ACTIVE",
+            "status": "Active",
             "providerName": "Red Hook Recovery",
             "driverName": "Sam",
             "lat": 40.6734,
@@ -197,7 +192,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-019",
-            "status": "OFFLINE",
+            "status": "Offline",
             "providerName": "Williamsburg Wheels",
             "driverName": "Hip",
             "lat": 40.7126,
@@ -206,7 +201,7 @@ vehicles_db = [
         },
         {
             "id": "TOW-020",
-            "status": "BUSY",
+            "status": "Busy",
             "providerName": "Midtown Mechanics",
             "driverName": "Rock",
             "lat": 40.7549,
@@ -214,9 +209,6 @@ vehicles_db = [
             "rating": 4.9
         }
     ]
-
-    # ... add rest of your vehicles here
-]
 
 
 @app.get("/api/vehicles", response_model=List[Vehicle])
@@ -237,3 +229,5 @@ async def simulate_update():
             v["status"] = random.choice(["Active", "Busy", "Offline"])
 
     return vehicles_db
+
+
