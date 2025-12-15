@@ -246,7 +246,8 @@ async def update_vehicle_status(update_data: VehicleUpdate):
         # 兼容之前的数据库结构（扁平列表）
         if vehicle["providerName"] == update_data.providerName:
             vehicle["status"] = update_data.status
-            return vehicle
+            
+    return vehicle
 
     # 如果没找到
     raise HTTPException(status_code=404, detail="Provider not found")
